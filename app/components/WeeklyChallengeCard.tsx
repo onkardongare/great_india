@@ -40,7 +40,7 @@ export default function WeeklyChallengeCard({ title, description, progress, part
               <Users className="h-4 w-4" />
               <span className="text-sm">{participants.toLocaleString()} participants</span>
             </div>
-            <Button variant="sm"> secondary</Button>
+          <Button variant="secondary">Secondary</Button>
             Join Challenge
           </div>
         </div>
