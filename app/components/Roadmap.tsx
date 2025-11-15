@@ -9,7 +9,24 @@ Users, Building, Zap, Globe, Heart, Star,
 import { SectionTitle, Container } from './UI';
 
 const IndiaRoadmap2047 = () => {
-const [selectedMilestone, setSelectedMilestone] = useState(null);
+
+interface Milestone {
+  year: number;
+  phase: string;
+  status: string;
+  gdp: string;
+  perCapitaIncome: string;
+  achievements: {
+    pillar: string;
+    icon: any;
+    title: string;
+    description: string;
+  }[];
+  color: string;
+  textColor: string;
+}
+
+const [selectedMilestone, setSelectedMilestone] = useState<Milestone | null>(null);
 const [currentYear, setCurrentYear] = useState(2025);
 
 const roadmapData = [
@@ -198,7 +215,7 @@ return (
                             <div 
                               key={achIndex}
                               className="group p-3 md:p-4 rounded-xl hover:bg-blue-50 cursor-pointer transition-all duration-300 border border-gray-100 hover:border-blue-200 hover:shadow-md"
-                              onClick={() => setSelectedMilestone({...achievement, year: milestone.year})}
+                              onClick={() => setSelectedMilestone(milestone)}
                             >
                               <div className="flex items-start space-x-3 md:space-x-4">
                                 <div className={`p-2 md:p-3 rounded-xl ${milestone.color} text-white flex-shrink-0 group-hover:scale-110 transition-transform`}>

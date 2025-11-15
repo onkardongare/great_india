@@ -3,7 +3,7 @@ import Header from "@/components/Header";
 import {NextIntlClientProvider, hasLocale} from 'next-intl';
 import {notFound} from 'next/navigation';
 import {routing} from '@/i18n/routing';
-import Providers  from "@/redux/reduxProvider";  // ✅ new wrapper
+import Providers  from "@/redux/reduxProvider";  // new wrapper
 
  
 export default async function LocaleLayout({
