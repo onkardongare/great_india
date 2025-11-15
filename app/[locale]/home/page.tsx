@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { Leaf, Lightbulb, MapPinned, School, Server, ShieldCheck } from "lucide-react";
-import { Container, Pill, SectionTitle } from "../../components/UI";
+import { Container, SectionTitle } from "../../components/UI";
 import NavBar from "../../components/NavBar";
 import Hero from "../../components/Hero";
 import Act from "../../components/Act";

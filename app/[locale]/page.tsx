@@ -95,8 +95,6 @@ export default function OverviewPage() {
         return "English";
       case "hi":
         return "हिंदी";
-      case "mr":
-        return "मराठी";
       default:
         return "English";
     }
@@ -166,7 +164,10 @@ export default function OverviewPage() {
     { title: "Leaderboards", color: "bg-blue-500", description: "See how your contributions compare and celebrate top contributors", icon: TrendingUp },
   ];
 
-  if (isLoading || !isFirstTime) {
+  // While loading, don't render page yet. Do NOT hide the page when user has seen the intro;
+  // previously `!isFirstTime` was included here which returns `null` for returning visitors
+  // (so only navbar/layout remained visible). Keep the page visible after initialization.
+  if (isLoading) {
     return null;
   }
 
@@ -174,25 +175,25 @@ export default function OverviewPage() {
     <div className="flex flex-col min-h-screen bg-black">
       <div className="flex-1 overflow-auto bg-gradient-to-br from-blue-50 via-white to-green-50">
         {/* Hero Section */}
-        <div className="bg-blue-600 p-5 rounded-lg flex flex-col items-center">
+        <div className="bg-blue-600 p-5 rounded-lg flex flex-col items-center mt-3">
           <div className="p-0">
-            <Image
+            {/* <Image
               src={icons.logo_fit} // Replace with your actual image path
               alt="Logo"
               width={152} // Corresponds to w-38 (38 * 4 = 152)
               height={64} // Corresponds to h-16 (16 * 4 = 64)
               className="object-contain"
-            />
+            /> */}
           </div>
           {/* Language Selection */}
           <div className="p-2">
             <div className="flex flex-row space-x-2">
-              {['en', 'hi', 'mr'].map((lang) => (
+              {['en', 'hi'].map((lang) => (
                 <button
                   key={lang}
                   onClick={() => handleLanguageChange(lang)}
                   className={`px-4 py-2 rounded-full ${
-                    currentLocale === lang ? 'bg-green-600' : 'bg-gray-200'
+                    currentLocale === lang ? 'bg-yellow-400' : 'bg-gray-200'
                   }`}
                 >
                   <span
@@ -216,7 +217,7 @@ export default function OverviewPage() {
           {platformStats.map((stat, i) => {
             const Icon = stat.icon;
             return (
-              <div key={i} className="w-[49%] mb-1 p-2 flex flex-col items-center rounded-xl bg-orange-400">
+              <div key={i} className="w-[49%] mb-1 p-2 flex flex-col items-center rounded-xl bg-yellow-400">
                 <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-2">
                   <Icon color="#2563eb" size={32} />
                 </div>
@@ -385,7 +386,7 @@ export default function OverviewPage() {
           </div>
         </section>        
         {/* Get Started Section */}
-        <div className="bg-blue-900 p-6">
+        <div className="bg-blue-500 p-6 border-1 rounded-md">
           <h2 className="text-white text-3xl font-bold text-center mb-2">Ready to Make a Difference?</h2>
           <p className="text-blue-200 text-center mb-4">
             Join thousands of citizens who are already transforming their communities.
